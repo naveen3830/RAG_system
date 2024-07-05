@@ -9,6 +9,7 @@ from langchain.embeddings import HuggingFaceBgeEmbeddings
 from langchain.memory import ConversationBufferMemory
 from langchain.chains.conversational_retrieval.base import ConversationalRetrievalChain
 from htmltemplate import css,bot_template,user_template
+load_dotenv()
 
 # groq_api_key = st.secrets["groq_api_key"]
 groq_api_key = os.getenv('GROQ_API_KEY')
