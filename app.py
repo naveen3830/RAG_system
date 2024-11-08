@@ -31,9 +31,7 @@ def get_text_chunks(text):
         separator="\n",
         chunk_size=1000,
         chunk_overlap=100,
-        length_function=len
-    )
-    
+        length_function=len)
     chunks=text_splitter.split_text(text)
     return chunks
 
@@ -48,8 +46,7 @@ def get_conversation_chain(vectorstore):
     conversation_chain=ConversationalRetrievalChain.from_llm(
         llm=llm,
         retriever=vectorstore.as_retriever(),
-        memory=memory
-    )
+        memory=memory)
     return conversation_chain
 
 def handle_userinput(user_question):
@@ -81,7 +78,6 @@ def main():
     
     if user_question:
         handle_userinput(user_question)
-        
     with st.sidebar:
         st.subheader("Your documents")
         pdf_docs=st.file_uploader("Upload your PDF's here and press click on 'Process'",accept_multiple_files=True)
@@ -97,8 +93,6 @@ def main():
                 
                 # create vector store
                 vectorstore=get_vectorstore(text_chunks)
-                
-                # create conversation chain
                 st.session_state.conversation=get_conversation_chain(vectorstore)
         
 if __name__=="__main__":
